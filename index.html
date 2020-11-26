@@ -1,0 +1,162 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title>Dictionary</title>
+    <link rel="stylesheet" type="text/css" href="style.css">
+</head>
+
+<body>
+    <div class="header">
+        <h1>English Dictionary</h1>
+    </div>
+    <div class="wrapper">
+        <div class="words">
+            <input type="text" id="search" placeholder="search...">
+            <button onclick="search()">Go</button>
+            <ul id="word_list">
+
+            </ul>
+        </div>
+
+        <div class="word">
+            <h3 id="word_text"></h3>
+            <p id="definition"></p>
+
+            <hr>
+
+            <h3>Related words:</h3>
+            <li id="related"></li>
+        </div>
+    </div>
+</body>
+
+</html>
+
+</html>
+<script type="text/javascript">
+    var dictionary = [{
+                word: "apple",
+                def: "A round fruit with seeds at its center",
+                rel: ["mango", "pear", "guava"]
+            }, {
+                word: "Ball",
+                def: "A square of some kind of plastic",
+                rel: ["football", "basketball "]
+                },
+                {
+                    word: "banana",
+                    def: "A long sweet fruit",
+                    rel: ["red banana"]
+                },
+                {
+                    word: "biscuit",
+                    def: "A sweet cookie",
+                    rel: ["toast"]
+                },
+                {
+                    word: "cat",
+                    def: "A small animal who can climb",
+                    rel: ["tiger", "leopard"]
+                },
+                {
+                word: "apple",
+                def: "A round fruit with seeds at its center",
+                rel: ["mango", "pear", "guava"]
+            }, {
+                word: "Ball",
+                def: "A square of some kind of plastic",
+                rel: ["football", "basketball "]
+                },
+                {
+                    word: "banana",
+                    def: "A long sweet fruit",
+                    rel: ["red banana"]
+                },
+                {
+                    word: "biscuit",
+                    def: "A sweet cookie",
+                    rel: ["toast"]
+                },
+                {
+                    word: "cat",
+                    def: "A small animal who can climb",
+                    rel: ["tiger", "leopard"]
+                },
+                {
+                word: "apple",
+                def: "A round fruit with seeds at its center",
+                rel: ["mango", "pear", "guava"]
+            }, {
+                word: "Ball",
+                def: "A square of some kind of plastic",
+                rel: ["football", "basketball "]
+                },
+                {
+                    word: "banana",
+                    def: "A long sweet fruit",
+                    rel: ["red banana"]
+                },
+                {
+                    word: "biscuit",
+                    def: "A sweet cookie",
+                    rel: ["toast"]
+                },
+                {
+                    word: "cat",
+                    def: "A small animal who can climb",
+                    rel: ["tiger", "leopard"]
+                },
+            ];
+
+
+// fill the dictionary with words
+            init = function() {
+                for (var i = 0; i < dictionary.length; i++) {
+
+                    document.getElementById('word_list').innerHTML += "<li onclick= 'show(" + i + ")'>" + dictionary[i].word + "</li>";
+                }
+            }
+            // call the init function when page loads
+            init();
+// display a word , its definition and related words
+            show = function(i){
+
+                    document.getElementById('word_text').innerHTML = dictionary[i].word;
+                    document.getElementById('definition').innerHTML = dictionary[i].def;
+
+                    var list = "";
+                    for (var j = 0; j < dictionary[i].rel.length ; j++) {
+                        list += "<li>" + dictionary[i].rel[j] + "</li>";
+                        document.getElementById('related').innerHTML = list;
+
+                    }
+            }
+
+            // show  first word in the dictionary when page loads
+            show(0);
+
+            // search fuctionality
+
+             search = function(){
+                query  = document.getElementById('search').value;
+
+                if (query == ""){
+                    return;
+                }
+                found = -1;  // initialize found to false
+                for (var i =0; i< dictionary.length ;  i++) {
+                   if (query == dictionary[i].word) {
+                    found = i;
+                    break;
+                   }else{
+                        document.getElementById('word_text').innerHTML = " word not found";
+                        document.getElementById('definition').innerHTML = " The word you entered is not found in our dictionary";
+                        document.getElementById('related').innerHTML = " No related words";
+                   }
+            }
+            if (found >= 0){
+                show(found);
+            }
+      }
+  </script>
